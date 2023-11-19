@@ -45,14 +45,15 @@ def scrape_website(url, message):
 
 # Function to send a Discord notification
 def send_discord_notification(message):
-    data = {
-        'content': f'{message}\n'
-    }
+    data = {'content': f'{message}\n'}
     response = requests.post(discord_webhook_url, json=data)
+
+    print('Response status code:', response.status_code)
+
     if response.status_code == 200:
         print('Discord notification sent successfully.')
     else:
-        print('Failed to send Discord notification. Status code:', response.status_code)
+        print('Failed to send Discord notification.')
 
 # Run the scraper periodically for each URL
 while True:
@@ -60,27 +61,26 @@ while True:
     for url, message in url_messages.items():
         product_status = scrape_website(url, message)
         previous_status = None
-        # Find the previous status of the product if available
+
         for data in existing_data[::-1]:
             if data['Message'] == message:
                 previous_status = data['Status']
                 break
 
+        print(f"URL: {url}, Message: {message}, Previous Status: {previous_status}, Current Status: {product_status}")
+
         if previous_status is None or previous_status != product_status:
-            # Send Discord notification for the status change
             if product_status == 'For Sale':
                 send_discord_notification(f"{message}: is For Sale at {time_now}")
             elif product_status == 'Sold Out':
                 send_discord_notification(f"{message}: is Sold Out at {time_now}")
 
-        # Create a dictionary for the scraped data
         scraped_data = {
             'Status': product_status,
             'Timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             'Message': message,
             'END': '\n\n\n'
         }
-        # Append the new scraped data to the existing data
         existing_data.append(scraped_data)
 
     print("Scraping completed.")
