@@ -50,7 +50,7 @@ def send_discord_notification(message):
 
     print('Response status code:', response.status_code)
 
-    if response.status_code == 200:
+    if 200 <= response.status_code < 300:
         print('Discord notification sent successfully.')
     else:
         print('Failed to send Discord notification.')
