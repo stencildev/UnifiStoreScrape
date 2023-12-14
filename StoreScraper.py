@@ -7,8 +7,9 @@ import time
 # Discord webhook URL (replace with your webhook URL)
 discord_webhook_url = ''
 
-time_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-time_date = datetime.now().strftime("%Y-%m-%d-T%H%M%S")
+# REMOVE IF WORKS
+# time_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+# time_date = datetime.now().strftime("%Y-%m-%d-T%H%M%S")
 
 # Dictionary of URLs and corresponding custom messages
 url_messages = {
@@ -71,6 +72,9 @@ while True:
         print(f"URL: {url}, Message: {message}, Previous Status: {previous_status}, Current Status: {product_status}")
 
         if previous_status is None or previous_status != product_status:
+            # Update timestamp for each notification
+            time_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
             if product_status == 'For Sale':
                 send_discord_notification(f"{message}: is For Sale at {time_now}")
             elif product_status == 'Sold Out':
