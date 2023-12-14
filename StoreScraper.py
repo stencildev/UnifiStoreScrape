@@ -15,7 +15,8 @@ url_messages = {
     "https://store.ui.com/us/en/pro/category/all-unifi-gateway-consoles/products/udr": "UDR",
     "https://store.ui.com/us/en/pro/category/all-unifi-gateway-consoles/products/udm-pro": "UDM-Pro",
     "https://store.ui.com/us/en/pro/category/all-unifi-gateway-consoles/products/udm-se": "UDM-SE",
-    "https://store.ui.com/us/en/pro/category/all-unifi-gateway-consoles/products/udw": "UDW"
+    "https://store.ui.com/us/en/pro/category/all-unifi-gateway-consoles/products/udw": "UDW",
+    "https://store.ui.com/us/en/pro/category/all-unifi-cloud-gateways/products/ux": "UX"
 }
 
 # Load the existing data from the JSON file if it exists
@@ -24,6 +25,7 @@ try:
         existing_data = json.load(file)
 except FileNotFoundError:
     existing_data = []
+
 
 # Function to scrape the website and check the product status
 def scrape_website(url, message):
@@ -43,6 +45,7 @@ def scrape_website(url, message):
         print(f"{message}: is For Sale")
         return 'For Sale'
 
+
 # Function to send a Discord notification
 def send_discord_notification(message):
     data = {
@@ -53,6 +56,7 @@ def send_discord_notification(message):
         print('Discord notification sent successfully.')
     else:
         print('Failed to send Discord notification. Status code:', response.status_code)
+
 
 # Run the scraper periodically for each URL
 while True:
