@@ -17,7 +17,8 @@ url_messages = {
     "https://store.ui.com/us/en/pro/category/all-unifi-gateway-consoles/products/udm-pro": "UDM-Pro",
     "https://store.ui.com/us/en/pro/category/all-unifi-gateway-consoles/products/udm-se": "UDM-SE",
     "https://store.ui.com/us/en/pro/category/all-unifi-gateway-consoles/products/udw": "UDW",
-    "https://store.ui.com/us/en/pro/category/all-unifi-cloud-gateways/products/ux": "UX"
+    "https://store.ui.com/us/en/pro/category/all-unifi-cloud-gateways/products/ux": "UX",
+    "https://store.ui.com/us/en/pro/category/accessories-internet-solutions/products/uci": "UCI"
 }
 
 # Load the existing data from the JSON file if it exists
